@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<title>Video Streaming</title>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+	<video src="" id="video" style="width:600px;height:320plx" autoplay="true" />
+	<canvas id="preview"></canvas>
+	<div id="logger"></div>
+	<script>
+		var canvas=document.getElementById("preview");
+		var context=canvas.getContext("2d");
+		canvas.width=800;
+		canvas.height=600;
+		context.width=canvas.width;
+		context.height=canvas.height;
+		var video=document.getElementById("video");
+		var socket=io();
+		function logger(msg){
+			$("#logger").text(msg);
+		}
+		function loadCam(stream){
+			
+			logger("cam connected");
+			video.src = window.URL.createObjectURL(stream);
+			
+		}
+		function loadFail(){
+			
+			logger("camer");
+		}
+		function viewVideo(video,context){
+			context.drawImage(video,0,0,context.width,context.height);
+			socket.emit("stream",canvas.toDataURL("image/webp"));
+			
+		}
+		$(function(){
+			navigator.getUserMedia = navigator.getUserMedia ||navigator.webkitGetUserMedia ||navigator.mozGetUserMedia;
+		 if (navigator.getUserMedia) {
+   					navigator.getUserMedia({ video: true},loadCam,loadFail);
+			}
+				setInterval(function(){
+					viewVideo(video,context);	
+					
+				},500);		 
+		});
+	
+	</script>
+</body>
+
+</html>
