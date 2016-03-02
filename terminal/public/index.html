@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+<head>
+  <link type="text/css" href="/css/jquery.terminal.css" rel="stylesheet" />
+<title>Web Terminal</title>
+</head>
+
+<body id="shell">
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="socket.io/socket.io.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/jquery.terminal.min.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function(){
+    
+        var socket = io.connect();
+        var terminal = $('#shell').terminal(function(command, terminal) {
+        socket.send(command);
+      },
+      {
+          greetings: 'Welcome to the web shell'
+        , prompt: 'shell $'
+        , exit: false
+      });
+        socket.on('message', function(data) {
+        terminal.echo(String(data));
+      });
+   });
+  </script>
+
+
+</body>
+
+</html>
