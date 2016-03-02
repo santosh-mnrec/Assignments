@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e266a276-6a9e-4f16-bfcc-fbf35e0d5a7f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7084/CricketService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CricketService.disco" MetadataType="Disco" ID="ead54037-cd55-4623-b81e-ae37b20c84db" SourceId="1" SourceUrl="http://localhost:7084/CricketService.svc?disco" />
+    <MetadataFile FileName="CricketService.xsd" MetadataType="Schema" ID="76ce9b1e-5ae1-4b41-a8dc-a26956531a9a" SourceId="1" SourceUrl="http://localhost:7084/CricketService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CricketService.wsdl" MetadataType="Wsdl" ID="30cf56c6-9a3c-413a-8621-c4f9c13bebd6" SourceId="1" SourceUrl="http://localhost:7084/CricketService.svc?wsdl" />
+    <MetadataFile FileName="CricketService1.xsd" MetadataType="Schema" ID="b354625b-8dea-48eb-a4fa-76a624c85717" SourceId="1" SourceUrl="http://localhost:7084/CricketService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CricketService2.xsd" MetadataType="Schema" ID="788a34ed-c008-462b-b1de-3a3222dc773d" SourceId="1" SourceUrl="http://localhost:7084/CricketService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
