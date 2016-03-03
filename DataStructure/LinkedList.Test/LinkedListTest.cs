@@ -35,5 +35,33 @@ namespace LinkedList.Test
 
         }
 
+        [TestMethod]
+
+        public void InsertAt_Begining()
+        {
+            LinkedList list = new LinkedList();
+            list.AddToTail(10);
+            list.AddToTail(20);
+            list.InsertAt(30,0);
+            var expected = "30->10->20->NULL";
+            Assert.AreEqual(expected, list.ToString());
+
+        }
+
+        [TestMethod]
+
+        public void InsertAt_Random()
+        {
+            LinkedList list = new LinkedList();
+            list.AddToTail(10);
+            list.AddToTail(20);
+            list.AddToTail(40);
+            list.AddFirst(100);
+            list.InsertAt(30,2 );
+            var expected = "100->10->30->20->40->NULL";
+            Assert.AreEqual(expected, list.ToString());
+
+        }
+
     }
 }

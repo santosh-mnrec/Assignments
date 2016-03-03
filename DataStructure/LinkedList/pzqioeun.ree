@@ -63,6 +63,7 @@ namespace LinkedList
 
 
         }
+
         public void AddToTail(int data)
         {
             Node newNode = new Node(data);
@@ -120,6 +121,5 @@ namespace LinkedList
             builder.Append("NULL");
             return builder.ToString();
         }
-
     }
 }

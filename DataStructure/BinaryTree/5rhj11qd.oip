@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BinaryTree
+{
+    public class Node
+    {
+        public Node Left { get; set; }
+        public Node Right { get; set; }
+        public int Data { get; set; }
+        public Node()
+        {
+
+        }
+        public Node(int data)
+        {
+            this.Data = data;
+            this.Left = null;
+            this.Right = null;
+        }
+        public override string ToString()
+        {
+            string nodeString = "[" + this.Data + " ";
+
+            // Leaf node
+            if (this.Left == null && this.Right == null)
+            {
+                nodeString += " (Leaf) ";
+            }
+
+            if (this.Left != null)
+            {
+                nodeString += "Left: " + this.Left.ToString();
+            }
+
+            if (this.Right != null)
+            {
+                nodeString += "Right: " + this.Right.ToString();
+            }
+
+            nodeString += "] ";
+
+            return nodeString;
+        }
+    }
+
+    public class BinarySearchTree
+    {
+
+        public Node root;
+
+        public BinarySearchTree()
+        {
+            root = null;
+        }
+
+        public void Insert(int i)
+        {
+            Node newNode = new Node();
+            newNode.Data = i;
+            if (root == null)
+                root = newNode;
+            else
+            {
+                Node current = root;
+                Node parent;
+                while (true)
+                {
+                    parent = current;
+                    if (i < current.Data)
+                    {
+                        current = current.Left;
+                        if (current == null)
+                        {
+                            parent.Left = newNode;
+                            break;
+                        }
+                        else
+                        {
+                            current = current.Right;
+                            if (current == null)
+                            {
+                                parent.Right = newNode;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
