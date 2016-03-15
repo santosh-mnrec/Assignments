@@ -1,0 +1,213 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TicTacToe
+{
+    public class TicTacToe
+    {
+        private static int[,] board;
+        public string _playerName;
+        public int Player { get; set; }
+        public TicTacToe(int player, string name)
+        {
+            board = new int[3, 3];
+            this._playerName = name;
+            this.Player = player;
+
+        }
+
+        public string PlayerName
+        {
+
+            get
+            {
+                return _playerName;
+            }
+            set
+            {
+                if (value.Length > 0)
+                    _playerName = value;
+                else
+                {
+
+                    while (value.Length < 1)
+                    {
+                        Console.WriteLine("Please enter player name");
+                        value = Console.ReadLine();
+
+                    }
+                }
+            }
+        }
+
+        public static void InitBoard()
+        {
+            for (int r = 1; r < 3; r++)
+            {
+                for (int c = 1; c < 3; c++)
+                {
+                    board[r, c] = 0;
+                }
+            }
+            DisplayBoard();
+        }
+
+        private static void DisplayBoard()
+        {
+            for (int r = 0; r < 3; r++)
+            {
+                for (int c = 0; c < 3; c++)
+                {
+                    Console.Write(board[r, c] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        public bool PlayGame()
+        {
+            int r = 0;
+            int c = 0;
+            Random rand1 = new Random();
+            Random rand2 = new Random();
+            if (PlayerName != "Computer")
+            {
+                Console.WriteLine("Please enter where to place mark");
+                Int32.TryParse(Console.ReadLine(), out r);
+                Int32.TryParse(Console.ReadLine(), out c);
+
+            }
+            else//playing against computer
+            {
+                r = rand1.Next(1, 4);
+                c = rand2.Next(1, 4);
+
+            }
+            while (CheckBoard(r,c))
+            {
+
+                if (PlayerName != "Computer")
+                {
+                    Console.WriteLine("You entered wrong value");
+                    Int32.TryParse(Console.ReadLine(), out r);
+                    Int32.TryParse(Console.ReadLine(), out c);
+
+                }
+                else
+                {
+                    r = rand1.Next(1, 4);
+                    c = rand2.Next(1, 4);
+                }
+            }
+            board[r - 1, c - 1] = Player;
+            DisplayBoard();
+            if (Win())
+            {
+                if (PlayerName.Equals("computer"))
+                   Console.WriteLine("Computer WIns");
+                else
+                    Console.WriteLine("P");
+                return true;
+                
+            }
+            else if (Draw())
+            {
+                Console.WriteLine("Its draw");
+                return true;
+
+            }
+            return false;
+        }
+
+        private bool Draw()
+        {
+            for (int r = 1; r < 3; r++)
+            {
+                for (int c = 1; c < 3; c++)
+                {
+                    if (board[r - 1, c - 1] != 1 && board[r - 1, c - 1] != 2)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        private bool Win()
+        {
+            //Row
+            if (board[0, 0].Equals(Player) && board[0, 1].Equals(Player) && board[0, 2].Equals(Player))
+                return true;
+            if (board[1, 0].Equals(Player) && board[0, 1].Equals(Player) && board[0, 2].Equals(Player))
+                return true;
+            if (board[2, 0].Equals(Player) && board[0, 1].Equals(Player) && board[0, 2].Equals(Player))
+                return true;
+            //Column
+            if (board[0, 0].Equals(Player) && board[1,0].Equals(Player) && board[2,0].Equals(Player))
+                return true;
+            if (board[0, 1].Equals(Player) && board[1, 1].Equals(Player) && board[2,1].Equals(Player))
+                return true;
+            if (board[0, 1].Equals(Player) && board[1, 1].Equals(Player) && board[2, 2].Equals(Player))
+                return true;
+            //accross
+            if (board[0, 0].Equals(Player) && board[ 0,1].Equals(Player) && board[0,2].Equals(Player))
+                return true;
+            if (board[1, 0].Equals(Player) && board[1, 1].Equals(Player) && board[1, 2].Equals(Player))
+                return true;
+         
+            return false;
+
+        }
+        private bool CheckBoard(int r, int c)
+        {
+            bool OK = false;
+            if (r < 3 && c < 3)
+                return false;
+            if (board[r - 1, c - 1] != 1 && board[r - 1, c - 1] != 2)
+                OK = true;
+            return OK;
+
+        }
+
+        // Loop through rows and see if any are winners.
+        private bool CheckRowsForWin()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (CheckRowCol(board[i, 0], board[i, 1], board[i, 2]) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Loop through columns and see if any are winners.
+        private bool CheckColumnsForWin()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (CheckRowCol(board[0, i], board[1, i], board[2, i]) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Check the two diagonals to see if either is a win. Return true if either wins.
+        private bool CheckDiagonalsForWin()
+        {
+            return ((CheckRowCol(board[0, 0], board[1, 1], board[2, 2]) == true) ||
+                (CheckRowCol(board[0, 2], board[1, 1], board[2, 0]) == true));
+        }
+
+        // Check to see if all three values are the same (and not empty) indicating a win.
+        private bool CheckRowCol(int c1, int c2, int c3)
+        {
+            return ((c1 != 0) && (c1 == c2) && (c2 == c3));
+        }
+
+    }
+}

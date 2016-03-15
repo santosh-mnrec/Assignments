@@ -20,6 +20,9 @@ namespace BinaryTree
             nums.Insert(22);
             Console.WriteLine("Inorder traversal: ");
             nums.InOrder(nums.root);
+            nums.Delete(3);
+            Console.WriteLine("DE");
+            nums.InOrder(nums.root);
         }
     }
 }
