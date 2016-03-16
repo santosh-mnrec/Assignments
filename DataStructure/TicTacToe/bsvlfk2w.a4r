@@ -85,7 +85,6 @@ namespace TicTacToe
                 c = rand2.Next(1, 4);
 
             }
-            
             while (!CheckBoard(r,c))
             {
 
@@ -128,7 +127,7 @@ namespace TicTacToe
             {
                 for (int c = 0; c < 3; c++)
                 {
-                    if (board[r , c ] != 1 && board[r , c ] != 2)
+                    if (board[r - 1, c - 1] != 1 && board[r - 1, c - 1] != 2)
                         return false;
                 }
             }
