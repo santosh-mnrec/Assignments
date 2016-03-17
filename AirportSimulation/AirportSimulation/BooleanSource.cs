@@ -26,12 +26,15 @@ namespace AirportSimulation
         *   with the probability of a <CODE>true</CODE> value being determined
         *   by the argument that was given to the constructor.
         **/
-
+        static float NextFloat(Random rand)
+        {
+            return float.MaxValue * ((rand.Next() / 1073741824.0f) - 1.0f);
+        }
         Random randon = new Random();
         public bool query()
         {
             Thread.Sleep(10);
-            return (randon.Next(-1,3)< probability);
+            return (NextFloat (randon)< probability);
             
         }
 

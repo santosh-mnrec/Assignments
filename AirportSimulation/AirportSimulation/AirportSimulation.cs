@@ -86,7 +86,7 @@ namespace AirportSimulation
                 {
                     Plane p = new Plane();
                     landingQ.Enqueue(p);
-                    allPlanes.AddFirst(p);
+                    allPlanes.AddLast(p);
                 }
                 else
 
@@ -174,7 +174,7 @@ namespace AirportSimulation
             Console.WriteLine("Average size of the landingQ: {0}\r\n", avgLandingQueueSize / avgCounter);
             Console.WriteLine("Average size of the takeOffQ: {0}\r\n", avgTakeOffQueueSize / avgCounter);
             Console.WriteLine("Average size of the allPlanes: {0}\r\n", avgAllPlanesQueueSize / avgCounter);
-            Console.WriteLine("Percent Busy: %s\r\n", 1.0 - ((double)totalPlanesLanded + (double)totalPlanesTakenOff) / (double)avgCounter);
+            Console.WriteLine("Percent Busy: {0}\r\n", 1.0 - ((double)totalPlanesLanded + (double)totalPlanesTakenOff) / (double)avgCounter);
 
         }
 
