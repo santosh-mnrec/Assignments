@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.socket.io/socket.io-1.3.2.js"></script>
+</head>
+<body>
+<canvas id="board"></canvas>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var socket = io.connect();
+        canvas = document.getElementById('board');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+        var drawing = false;
+        canvas.addEventListener("mousemove", function (e) {
+            if (drawing) draw(e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {drawing = true;}, false);
+        canvas.addEventListener("mouseup", function (e) {drawing = false;}, false);
+        canvas.addEventListener("mouseout", function (e) {drawing = false;}, false);
+
+        function draw(e) {
+            cX = e.clientX - canvas.offsetLeft;
+            cY = e.clientY - canvas.offsetTop;
+            ctx.strokeStyle = '#333333';
+            ctx.lineTo(cX, cY);
+            ctx.stroke();
+
+            socket.emit('draw',{x:cX,y:cY});
+        }
+    });     
+</script>
+</body>
+</html>

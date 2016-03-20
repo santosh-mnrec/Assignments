@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><script src="https://cdn.socket.io/socket.io-1.3.2.js"></script></head>
+<body>
+<canvas id="board"></canvas>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var socket = io.connect();
+        socket.on('draw',function(data){
+            draw(data);
+        });
+        canvas = document.getElementById('board');
+        ctx = canvas.getContext("2d");
+
+        function draw(e) {
+            ctx.strokeStyle = '#333333';
+            ctx.lineTo(e.x, e.y);
+            ctx.stroke();
+        }
+    });
+</script>
+</body>
+</html>
